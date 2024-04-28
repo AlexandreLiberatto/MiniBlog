@@ -10,6 +10,12 @@ import About from './pages/About/About'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 
+// Login
+import Login from './Login/Login'
+
+// Register
+import Register from './Register/Register'
+
 function App() {
 
   return (
@@ -20,6 +26,8 @@ function App() {
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='about' element={<About />} />
+          <Route path='/login' element={<Login />} />
+          <Route path='/register' element={<Register />} />
         </Routes>
       </div>
       <Footer />
