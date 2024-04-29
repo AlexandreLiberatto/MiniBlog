@@ -1,7 +1,7 @@
-import { useAuthentication } from "../hooks/useAuthentication";
-import style from "./Register.module.css";
+import styles from "./Register.module.css";
 
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
+import { useAuthentication } from "../../hooks/useAuthentication";
 
 const Register = () => {
   const [displayName, setDisplayName] = useState("");
@@ -24,7 +24,7 @@ const Register = () => {
     };
 
     if (password !== confirmPassword) {
-      setError("As senhas precisam ser iguais!");
+      setError("As senhas precisam ser iguais.");
       return;
     }
 
@@ -40,7 +40,7 @@ const Register = () => {
   }, [authError]);
 
   return (
-    <div className={style.register}>
+    <div className={styles.register}>
       <h1>Cadastre-se para postar</h1>
       <p>Crie seu usuário e compartilhe suas histórias</p>
       <form onSubmit={handleSubmit}>
@@ -51,8 +51,8 @@ const Register = () => {
             name="displayName"
             required
             placeholder="Nome do usuário"
-            value={displayName}
             onChange={(e) => setDisplayName(e.target.value)}
+            value={displayName}
           />
         </label>
         <label>
@@ -62,8 +62,8 @@ const Register = () => {
             name="email"
             required
             placeholder="E-mail do usuário"
-            value={email}
             onChange={(e) => setEmail(e.target.value)}
+            value={email}
           />
         </label>
         <label>
@@ -72,23 +72,23 @@ const Register = () => {
             type="password"
             name="password"
             required
-            placeholder="Insira sua senha"
-            value={password}
+            placeholder="Insira a senha"
             onChange={(e) => setPassword(e.target.value)}
+            value={password}
           />
         </label>
         <label>
           <span>Confirmação de senha:</span>
           <input
             type="password"
-            name="confirmacaoPassword"
+            name="confirmPassword"
             required
-            placeholder="Confirme sua senha"
-            value={confirmPassword}
+            placeholder="Confirme a senha"
             onChange={(e) => setConfirmPassword(e.target.value)}
+            value={confirmPassword}
           />
         </label>
-        {!loading && <button className="btn">Cadastrar</button>}
+        {!loading && <button className="btn">Entrar</button>}
         {loading && (
           <button className="btn" disabled>
             Aguarde...

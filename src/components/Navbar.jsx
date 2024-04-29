@@ -2,23 +2,24 @@ import { NavLink } from "react-router-dom";
 
 import { useAuthentication } from "../hooks/useAuthentication";
 
-import { useAuthValue } from "../context/AuthContext";
+import { useAuthValue } from "../contexts/AuthContext";
 
-import style from "./Navbar.module.css";
+import styles from "./Navbar.module.css";
 
 const Navbar = () => {
+  const { logout } = useAuthentication();
   const { user } = useAuthValue();
 
   return (
-    <nav className={style.navbar}>
-      <NavLink to="/" className={style.brand}>
+    <nav className={styles.navbar}>
+      <NavLink className={styles.brand} to="/">
         Mini <span>Blog</span>
       </NavLink>
-      <ul className={style.links_list}>
+      <ul className={styles.links_list}>
         <li>
           <NavLink
             to="/"
-            className={({ isActive }) => (isActive ? style.active : "")}
+            className={({ isActive }) => (isActive ? styles.active : "")}
           >
             Home
           </NavLink>
@@ -28,7 +29,7 @@ const Navbar = () => {
             <li>
               <NavLink
                 to="/login"
-                className={({ isActive }) => (isActive ? style.active : "")}
+                className={({ isActive }) => (isActive ? styles.active : "")}
               >
                 Entrar
               </NavLink>
@@ -36,7 +37,7 @@ const Navbar = () => {
             <li>
               <NavLink
                 to="/register"
-                className={({ isActive }) => (isActive ? style.active : "")}
+                className={({ isActive }) => (isActive ? styles.active : "")}
               >
                 Cadastrar
               </NavLink>
@@ -45,32 +46,37 @@ const Navbar = () => {
         )}
         {user && (
           <>
-          <li>
-            <NavLink
-              to="/posts/create"
-              className={({ isActive }) => (isActive ? style.active : "")}
-            >
-              Novo post
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/dashboard"
-              className={({ isActive }) => (isActive ? style.active : "")}
-            >
-              Dashboard
-            </NavLink>
-          </li>
-        </>
+            <li>
+              <NavLink
+                to="/posts/create"
+                className={({ isActive }) => (isActive ? styles.active : "")}
+              >
+                Novo post
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/dashboard"
+                className={({ isActive }) => (isActive ? styles.active : "")}
+              >
+                Dashboard
+              </NavLink>
+            </li>
+          </>
         )}
         <li>
           <NavLink
             to="/about"
-            className={({ isActive }) => (isActive ? style.active : "")}
+            className={({ isActive }) => (isActive ? styles.active : "")}
           >
             Sobre
           </NavLink>
         </li>
+        {user && (
+          <li>
+            <button onClick={logout}>Sair</button>
+          </li>
+        )}
       </ul>
     </nav>
   );
